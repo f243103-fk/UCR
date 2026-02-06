@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg1:#ffe6f0; --bg2:#fff5fa;
+  --card:rgba(255,255,255,.65);
+  --text:#5a1d3c;
+  --accent:#ff4f9a;
+  --btn:#ff2d88;
+}
+
+/* THEMES */
+body.cute{
+  --bg1:#ffe6f0;--bg2:#fff5fa;--accent:#ff69b4;--btn:#ff3b8d;
+}
+body.luxury{
+  --bg1:#2b0a1f;--bg2:#12040c;--card:rgba(255,255,255,.12);
+  --text:#f5d7e3;--accent:#d4af37;--btn:#caa24d;
+}
+body.dramatic{
+  --bg1:#3a001e;--bg2:#8b0038;--accent:#ff004f;--btn:#ff004f;
+}
+body.minimal{
+  --bg1:#f7f7f7;--bg2:#ffffff;--card:#ffffff;
+  --text:#222;--accent:#111;--btn:#111;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:200vh;
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  overflow-x:hidden;
+  transition:.5s;
+}
+
+/* Theme Switcher */
+.switcher{
+  position:fixed;top:15px;right:15px;
+  display:flex;gap:8px;z-index:10;
+}
+.switcher button{
+  padding:6px 10px;border-radius:10px;
+  border:none;cursor:pointer;font-size:13px;
+}
+
+/* Hearts */
+.heart{
+  position:absolute;font-size:18px;opacity:.25;
+  animation:float 10s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh)}
+  to{transform:translateY(-10vh)}
+}
+
+/* Card */
+.card{
+  backdrop-filter:blur(14px);
+  background:var(--card);
+  border-radius:26px;
+  padding:48px;
+  width:92%;
+  max-width:720px;
+  text-align:center;
+  color:var(--text);
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
+  animation:pop .8s ease;
+  margin-top:100px;
+}
+@keyframes pop{
+  from{opacity:0;transform:scale(.95)}
+  to{opacity:1;transform:scale(1)}
+}
+
+h1{font-family:Playfair Display;font-size:42px}
+p{line-height:1.7}
+
+/* Buttons */
+.buttons{
+  margin-top:35px;
+  position:relative;
+  height:120px
+}
+button{
+  padding:16px 38px;
+  border-radius:16px;
+  font-size:18px;
+  border:none;
+  cursor:pointer;
+}
+#yesBtn{
+  background:linear-gradient(135deg,var(--accent),var(--btn));
+  color:white;
+  box-shadow:0 15px 30px rgba(0,0,0,.3)
+}
+#yesBtn:hover{transform:translateY(-2px)}
+#noBtn{
+  position:absolute;
+  right:0;
+  background:white;
+  color:#555;
+}
+
+/* Success */
+#success{
+  display:none;
+  margin-top:100vh;
+}
+#success img{
+  width:85%;
+  max-width:420px;
+  border-radius:24px;
+  margin:30px 0;
+  box-shadow:0 20px 40px rgba(0,0,0,.35)
+}
+.footer{
+  margin-top:25px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,var(--bg1),#fff);
+}
+</style>
+</head>
+
+<body class="cute">
+
+<!-- THEME SWITCHER -->
+<div class="switcher">
+  <button onclick="setTheme('cute')">💗 Cute</button>
+  <button onclick="setTheme('luxury')">💎 Luxury</button>
+  <button onclick="setTheme('dramatic')">🎭 Drama</button>
+  <button onclick="setTheme('minimal')">🤍 Minimal</button>
+</div>
+
+<script>
+for(let i=0;i<22;i++){
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerText="💗";
+ h.style.left=Math.random()*100+"vw";
+ h.style.animationDuration=6+Math.random()*8+"s";
+ document.body.appendChild(h);
+}
+</script>
+
+<!-- FIRST SCREEN -->
+<div class="card" id="main">
+<h1>Khoulа, will you be my Valentine? 💝</h1>
+
+<p>
+You turn simple moments into memories.<br>
+I’d love to make this Valentine’s Day unforgettable — with you.
+</p>
+
+<div class="buttons">
+  <button id="yesBtn">YES 💖</button>
+  <button id="noBtn">No</button>
+</div>
+
+<p style="font-size:14px;margin-top:18px">
+(The “No” button is emotionally unavailable 😄)
+</p>
+</div>
+
+<!-- SECOND SCREEN -->
+<div class="card" id="success">
+<h1>Yay! 💕</h1>
+<h2>I knew you’d say yes ✨</h2>
+
+<img src="uspic.jpeg" alt="Love Image">
+
+<p>“This Valentine’s Day will be magical with you by my side.”</p>
+
+<div class="footer">
+Can’t wait to celebrate with you, Khoulа 🌹
+</div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const success = document.getElementById("success");
+
+/* No button escape */
+noBtn.addEventListener("mouseenter",()=>{
+  noBtn.style.transform =
+    `translate(-${Math.random()*260}px, ${Math.random()*70}px)`;
+});
+
+/* Yes button scroll */
+yesBtn.onclick = () => {
+  success.style.display = "block";
+  setTimeout(() => {
+    success.scrollIntoView({ behavior: "smooth" });
+  }, 300);
+};
+
+function setTheme(t){
+  document.body.className = t;
+}
+</script>
+
+</body>
+</html>
